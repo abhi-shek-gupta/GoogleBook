@@ -1,0 +1,32 @@
+
+<div style="padding:20px"></div>
+<div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12 " >
+
+                <form name="myUserForm" ng-submit="myUserForm.$valid && submitForm()" >
+                       
+                    <div class="row">
+                        <div class="col-sm-3 " >
+                            <div class="form-group" >
+                                <select id="day" name="day" class="form-control" ng-model="body.field" required>
+                                        <option value=""> Search </option>
+                                        <option value="title">Seach By title</option>
+                                        <option value="author">Search by Authour</option> 
+                                </select>  
+                            </div>          
+                        </div>
+                        <div class="col-sm-6 " >
+                                <div class="form-group" >
+                                <input id="keyword" name="keyword" class="form-control" ng-model="body.keyword" required>
+                                </div>
+                        </div>
+                         <div class="col-sm-3 ">
+                                <button class="btn btn-primary" >Submit</button>
+                         </div>
+                         
+                    </div>            
+                  
+            </div>
+        </div>
+    </div>
