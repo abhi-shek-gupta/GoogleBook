@@ -1,7 +1,9 @@
 const express=require('express');
 const http=require('http');
 const morgan=require('morgan');
-var book = require("google-books-search");
+// var book = require("google-books-search");
+var search=require("./routes/search")
+// var route=express.Router();
 
 const app=express();
 
@@ -9,26 +11,28 @@ var hostname='localhost';
 var port=3000 ;
 app.use(morgan('dev'));
 
+app.use('/',search)
 
-app.get('/:keyword/:field',function(req,res){
-    var keyword=req.params.keyword;
-    var field=req.params.field;
-    console.log(keyword);
-    console.log(field);
-    var options = {
-        field: field
-    };
-    book.search(keyword,options, function(error, results) {
-        if ( ! error ) {
-            // console.log(results);
-             res.send(results);
-            }
-        else {
-             console.log(error);
-        }
-    })
 
-});
+// route.get('/:keyword/:field',function(req,res){
+//     var keyword=req.params.keyword;
+//     var field=req.params.field;
+//     console.log(keyword);
+//     console.log(field);
+//     var options = {
+//         field: field
+//     };
+//     book.search(keyword,options, function(error, results) {
+//         if ( ! error ) {
+//             // console.log(results);
+//              res.send(results);
+//             }
+//         else {
+//              console.log(error);
+//         }
+//     })
+
+// });
 
 app.use(express.static(__dirname + '/public'));
 app.use(function(req, res) {
