@@ -8,7 +8,8 @@ search.get('/api/:keyword/:field',function(req,res){
     console.log(keyword);
     console.log(field);
     var options = {
-        field: field
+        field: field,
+        limit: 20,
     };
     book.search(keyword,options, function(error, results) {
         if ( ! error ) {

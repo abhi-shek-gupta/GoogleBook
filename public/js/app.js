@@ -20,16 +20,23 @@ app.controller('homeController', function ($scope, $http, $routeParams) {
     
     $scope.submitForm = function () {
         console.log(" in submitForm function");
-        console.log($scope.body);
-       
+        // console.log($scope.body);
         var keyword = $scope.body.keyword;
         var field = $scope.body.field;
         $http({
             url: '/api/' + keyword + "/" + field,
         }).then(function (response) {
-            console.log(response);
-            $scope.book=response.data;
-            
+            // console.log(response);
+
+            $scope.booklist=response.data;
+            if($scope.booklist.length){
+                $scope.display=true;
+            }
+            else{
+                $scope.display=false;
+            }
+
+            // console.log($scope.booklist);
         }, function (response) {
             console.log("error");
             console.log(response);

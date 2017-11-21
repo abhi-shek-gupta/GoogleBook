@@ -1,32 +1,60 @@
+<div style="padding:20px">
+</div>
+<div class="container" >
+    <div class="row">
+        <div class="col-sm-12 ">
 
-<div style="padding:20px"></div>
-<div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-12 " >
-
-                <form name="myUserForm" ng-submit="myUserForm.$valid && submitForm()" >
-                    <div class="row">
-                        <div class="col-sm-3 " >
-                            <div class="form-group" >
-                                <select id="day" name="day" class="form-control" ng-model="body.field" required>
+            <form name="myUserForm" ng-submit="myUserForm.$valid && submitForm()">
+                <div class="row">
+                    <div class="col-sm-3 ">
+                        <div class="form-group">
+                            <select id="day" name="day" class="form-control" ng-model="body.field" required>
                                         <option value=""> Search </option>
                                         <option value="title">Seach By title</option>
                                         <option value="author">Search by Authour</option> 
-                                </select>  
-                            </div>          
+                                </select>
                         </div>
-                        <div class="col-sm-6 " >
-                                <div class="form-group" >
-                                <input id="keyword" name="keyword" class="form-control" ng-model="body.keyword" required>
+                    </div>
+                    <div class="col-sm-6 ">
+                        <div class="form-group">
+                            <input id="keyword" name="keyword" class="form-control" ng-model="body.keyword" required>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 ">
+                        <button class="btn btn-primary">Submit</button>
+                    </div>
+
+
+                </div>
+            </form>
+
+            
+            <div class="container" ng-if="(booklist.length)" >
+                    <div class="row">
+                        <div class="well">
+                     <!-- <h1 class="text-center" ng-if="!(booklist.length)" > NO Search Result</h1>     -->
+                     <h1 class="text-center" id="result">Search Result</h1>
+                        <div class="list-group" ng-repeat="book in booklist">
+                          <a href="#" class="list-group-item active" >
+                                <div class="media col-md-3">
+                                    <figure class="pull-left">
+                                        <img class="media-object img-rounded img-responsive"  src={{book.thumbnail}} alt="placehold.it/350x250" >
+                                    </figure>
                                 </div>
+                                <div class="col-md-9">
+                                    <h4 class="list-group-item-heading"> {{book.title}} </h4>
+                                    <div class="list-group-item-text"><span>Authors :</span >{{book.authors[0]+","+book.authors[1]}} </div>
+                                    <div class="list-group-item-text" ng-if="book.averageRating == null"><span>Average Rating :</span> Rated yet </div>
+                                    <div class="list-group-item-text" ng-if="book.averageRating != null"><span>Average Rating :</span>{{book.averageRating}} </div>
+                                    <p class="list-group-item-text"><span>Description :</span>{{book.description}} </p>
+                                </div>
+                                
+                          </a>
+                          </div>
                         </div>
-                         <div class="col-sm-3 ">
-                                <button class="btn btn-primary" >Submit</button>
-                         </div>
-                         <!-- <prev> {{book |json}}</prev> -->
-                         
-                    </div>            
-                  
-            </div>
+                    </div>
+                </div>
+
+          
         </div>
     </div>
